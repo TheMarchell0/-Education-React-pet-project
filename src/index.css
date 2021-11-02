@@ -7,7 +7,170 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  --mainColor: #50568b;
+  --white: #FFFFFF;
+  --defaultTransition: 0.3s ease all;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+p, 
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+input,
+button {
+  padding: 10px;
+}
+
+input {
+  background: #3e3e3e;
+}
+
+button {
+  background: #020202;
+  border: none;
+  margin: 0 10px;
+  transition: 0.3s ease all;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.5;
+}
+
+.todo {
+  display: none;
+}
+
+.container {
+  padding: 0 40px;
+}
+
+.header {
+  background: var(--mainColor);
+}
+
+.header__wrapper {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  justify-content: space-between;
+}
+
+.header__logo {
+  max-width: 150px;
+  height: 87px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 50px;
+}
+
+.header__logo-text {
+  color: var(--white);
+  font-size: 40px;
+}
+
+.nav-list {
+  display: flex;
+  list-style-type: none;
+  flex-wrap: wrap;
+} 
+
+.nav-list__item {
+  margin-right: 40px;
+  transition:  var(--defaultTransition);
+}
+
+.nav-list__item:hover {
+  opacity: 0.5;
+}
+
+.nav-list__item:last-child {
+  margin-right: 0;
+}
+
+.nav-list__item a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+main {
+  background: #232323;
+  padding: 50px 0;
+  color: var(--white);
+}
+
+main button {
+  background: black;
+  padding: 10px;
+  color: var(--white);
+}
+
+main input {
+  color: var(--white);
+}
+
+.footer {
+  padding: 15px 0;
+  background: var(--mainColor);
+}
+
+.footer__text {
+  text-align: center;
+  font-size: 10px;
+  background: initial;
+  color: var(--white);
+}
+
+.active {
+  background: red;
+}
+
+table {
+  background: white;
+  text-align: center;
+}
+
+td {
+  border: 1px solid black;
+  padding: 10px;
+  background: #232323;
+  color: white;
+}
+
+.current,
+.current button,
+.current input,
+.product-table,
+.product-table button,
+.product-table input {
+  color: var(--white);
+}
+
+.pointerItem {
+  cursor: pointer;
 }
