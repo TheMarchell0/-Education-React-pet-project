@@ -61,7 +61,8 @@ button:hover {
   opacity: 0.5;
 }
 
-.todo {
+.todo,
+.product-table {
   display: none;
 }
 

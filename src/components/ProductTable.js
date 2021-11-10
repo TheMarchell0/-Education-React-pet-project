@@ -49,7 +49,6 @@ function ProductTable() {
                  let item = obj[objItem].trim();
                 if(item.length === 0) {
                     warningTextShow('Не все поля заполнены!');
-                    setObj(creatingTemplate());
                     return;
                     
                 }
@@ -82,7 +81,7 @@ function ProductTable() {
 
     function closeEdit() {
         setEditID(null);
-        warningTextShow('Элемент отредактирован!');
+        warningTextShow('Элемент сохранён!');
     }
 
     function setObjFunc(e, prop) {
