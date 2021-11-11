@@ -175,3 +175,50 @@ td {
 .pointerItem {
   cursor: pointer;
 }
+
+.test-file {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  width: 100%;
+  align-items: center;
+}
+
+.test-file__label {
+  background: white;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--defaultTransition);
+}
+
+.test-file__label:hover {
+  opacity: 0.5;
+}
+
+.test-file__input {
+  display: none;
+}
+
+.test-file__file-name {
+  position: relative;
+  font-size: 12px;
+}
+
+.test-file__remove {
+  font-size: 10px;
+  position: absolute;
+  right: -20px;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.test-file__file-size {
+  display: block;
+  color: gray;
+  font-size: 10px;
+  text-align: end;
+}
