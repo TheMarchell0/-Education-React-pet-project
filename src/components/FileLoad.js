@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 
 function FileLoad() {
-        let mainInput = document.querySelector('.test-file__input');
 
         const [inputFile, setInputFile] = useState('');
         const [fileSize, setFileSize] = useState('');
@@ -32,7 +31,7 @@ function FileLoad() {
         }
 
         function removeFile() {
-                mainInput.value = '';
+                document.querySelector('.test-file__input').value = '';
                 setInputFile('');
         }
 
