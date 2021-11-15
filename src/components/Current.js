@@ -1,25 +1,15 @@
 import React, {useState} from 'react';
 
 function Current() {
-       
-       const [nameValue, setNameValue] = useState('');
-       const [surnameValue, setSurnameValue] = useState('');
-       const [birthdayValue, setBirthdayValue] = useState('');
-       const [mailValue, setMailValue] = useState('');
-       const [telValue, setTelValue] = useState('');
 
-       function validate() {
-              console.log(1);
-       }
+    const [isEdit, setIsEdit] = useState(false);
+    const [value, setValue] = useState('Default text');
 
-	return <section className="form-section">
-                     <div className="form-section__container container">
-                            <div className="sun">
-                                   <div className="earth">
-                                          <div className="moon"></div>
-                                   </div>
-                            </div>
-                     </div>
+	return <section className="current-section">
+                    <div className="current-section__container container">
+                            <p>{isEdit ? <input value={value} onChange={e=> setValue(e.target.value)}/> : <span>{value}</span>}</p>
+                            <button onClick={()=> setIsEdit(!isEdit)}>{isEdit ? 'Сохранить изменения' : 'Редактировать'}</button>
+                    </div>
 	</section>;
 }
 

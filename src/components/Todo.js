@@ -2,54 +2,43 @@ import React, { useState } from 'react';
 
 function Todo() {
 
-	const [arr, setArr] = useState(['Встать', 'Открыть глаза', 'Умыться', 'Побриться', 'Поесть']);
+	const [arr, setArr] = useState([{text: 'Встать', edit: false}, {text: 'Открыть глаза', edit: false}, {text: 'Умыться', edit: false}, {text: 'Побриться', edit: false}, {text: 'Поесть', edit: false}]);
 	const [value, setValue] = useState('');
-	const arrHTML = arr.map((item,index)=> {
-		return <li key={index}>{index+1} - {item}</li>
+	const arrHTML = arr.map((item,index)=> { 
+		return <li key={index}>{item.edit ? <input value={item.text} onChange={(e)=> changeText(e.target.value, index)} onBlur={()=> closeEdit(index)}/> : <p><span onClick={()=> startEdit(index)}>{index+1} - {item.text}</span><span className="todo-close" onClick={()=> deletion(index)}>X</span></p>}</li>	
 	});
 
-	function sortNew() {
-		let arrCopy = Object.assign([], arr);
-		arrCopy.sort();
-		setArr(arrCopy);
+
+	function changeText(newText, index) {
+		let copy = Object.assign([], arr);
+		copy[index].text = capitalLetter(newText);
+		setArr(copy);
 	}
 
-	function reverseNew() {
-		let arrCopy = Object.assign([], arr);
-		arrCopy.reverse();
-		setArr(arrCopy);
+	function startEdit(index) {
+		let copy = Object.assign([], arr);
+		copy[index].edit = true;
+		setArr(copy);
+	}
+
+	function closeEdit(index) {
+		let copy = Object.assign([], arr);
+		copy[index].edit = false;
+		setArr(copy);
 	}
 
 	function addNew() {
 		let cleanValue = value.trim();
 		if (valueIsValid(cleanValue, false)) {
-			setArr([...arr, cleanValue]);
+			cleanValue = 
+			setArr([...arr, {text: capitalLetter(cleanValue), edit: false}]);
 			setValue('');	
 		};
 	}
 
-	function editNew() {
-		let cleanValue = value.trim();
-		if (valueIsValid(cleanValue, false)) {
-			let [text, num] = cleanValue.split(',');
-			num = Number(num);
-			setArr([...arr.slice(0, num),text, ...arr.slice(num+1)]);
-			setValue('');	
-		};
+	function deletion(deleteIndex) {
+		setArr([...arr.slice(0, deleteIndex), ...arr.slice(deleteIndex+1)]);
 	}
-
-	function deleteNew() {
-		let cleanValue = value.trim();
-		if (valueIsValid(cleanValue, true)) {
-			cleanValue = Number(cleanValue)-1;
-			setArr([...arr.slice(0, cleanValue), ...arr.slice(cleanValue+1)]);
-			setValue('');	
-		};
-	}
-
-	function deleteAll() {
-		setArr([]);	
-	};
 
 	function valueIsValid(checkingItem, checkingNumber) {
 		if (checkingItem.length == 0) {
@@ -70,6 +59,10 @@ function Todo() {
 		}
 		return true;
 	}
+
+	function capitalLetter(word) {
+		return word.slice(0,1).toUpperCase() + word.slice(1);
+	}
 	
 	return <section className="todo">
 		<ul>
@@ -77,11 +70,6 @@ function Todo() {
 		</ul>
 		<input value={value} onChange={e=> setValue(e.target.value)}/>
 		<button onClick={addNew}>Добавить</button>
-		<button onClick={editNew}>Редактировать</button>
-		<button onClick={sortNew}>Cортировать</button>
-		<button onClick={reverseNew}>Перевернуть</button>
-		<button onClick={deleteNew}>Удалить</button>
-		<button onClick={deleteAll}>Удалить всё</button>
 	</section>;
 }
 
